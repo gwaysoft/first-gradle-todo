@@ -1,0 +1,7 @@
+2019-04-04 18:00:31,330 {HH:mm:ss.SSS} INFO  c.g.gradle01.todo.web.HelloServlet:21 doGet - Hello, World!
+2019-04-04 18:17:48,877 {HH:mm:ss.SSS} INFO  c.g.gradle01.todo.web.HelloServlet:21 doGet - Hello, World!
+2019-04-04 18:25:25,517 {HH:mm:ss.SSS} INFO  c.g.gradle01.todo.web.HelloServlet:21 doGet - Hello, World!
+2019-04-04 18:27:52,857 {HH:mm:ss.SSS} INFO  c.g.gradle01.todo.web.HelloServlet:21 doGet - Hello, World!
+2019-04-04 18:38:15,044 {HH:mm:ss.SSS} INFO  c.g.gradle01.todo.web.HelloServlet:21 doGet - Hello, World!
+2019-04-04 18:40:15,874 {HH:mm:ss.SSS} INFO  c.g.gradle01.todo.web.HelloServlet:21 doGet - Hello, World!
+2019-04-11 14:33:12,534 {HH:mm:ss.SSS} INFO  c.g.gradle01.todo.web.HelloServlet:21 doGet - Hello, World!

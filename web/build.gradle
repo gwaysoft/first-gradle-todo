@@ -1,0 +1,77 @@
+plugins {
+    id 'war'
+    id 'org.gretty' version '2.2.0'
+}
+
+dependencies {
+    providedCompile 'javax.servlet:javax.servlet-api:3.1.0'
+    compile project(":repository")
+    testCompile 'org.mockito:mockito-core:2.7.19'
+}
+
+// 自定义
+task zip(type: Zip, group: "Archive", description: "Archive sources in a zip file"){
+    from "src"
+    setArchiveName "basic-zip-1.0.zip"
+}
+
+def createDir = {
+    path ->
+        String[] fileNameE =path.split('/')
+        String[] dirE =path.split("/\\w+.\\w+\$")
+        String fileName = fileNameE[fileNameE.length-1]
+        String dir = dirE[0]
+        System.out.println(dir + '  '+fileName )
+        System.out.println()
+        if(dir == null || dir[0].isEmpty()){
+            return
+        }
+
+        if(fileName.indexOf(".")>-1){
+            new File(dir).mkdirs()
+            new File(path).createNewFile()
+        }else{
+            new File(path).mkdirs()
+        }
+}
+
+def deleteDir = {
+    path ->
+        String sPath = new String(path)
+        String[] dir =sPath.split('/')
+
+        if(dir == null || dir[0].isEmpty()){
+            return
+        }
+        File root = new File(dir[0])
+        //System.out.println(dir[0])
+        root.deleteDir()
+
+}
+
+def paths = ['dir/makeDir/ddd.txt', 'dir/createDir', 'target/test.log']
+
+task delDir(){
+    doFirst{
+        paths.forEach(deleteDir)
+    }
+}
+
+task makeDir(){
+    dependsOn "delDir"
+    doLast{
+        paths.forEach(createDir)
+    }
+}
+
+jar {
+    manifest {
+        attributes(
+                "Manifest-Version": 1.0,
+                "Main-Class": "com.gwaysoft.gradle01.todo.App")
+    }
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    into('assets') {
+        from 'assets'
+    }
+}
